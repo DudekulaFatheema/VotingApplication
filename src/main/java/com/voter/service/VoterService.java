@@ -21,8 +21,11 @@ public interface VoterService {
 	
 	public List<Voter> getAllVoters() throws Exception;
 	
+	
 	public Voter registerVoter(Voter voter) throws NullUserFound, NullUserNameFoundException;
 	
 	public  Voter loginVoter(String userName, String password) throws NullUserFound;
-public List<Voter> findByCandId(String candId);
+
+
+      public List<Voter> getCandidateById(int id);
 }

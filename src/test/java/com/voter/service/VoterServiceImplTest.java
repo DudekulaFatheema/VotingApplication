@@ -27,7 +27,7 @@ import com.voter.repository.VoterRepository;
 
 
 @SpringBootTest
-public class VoterServiceImplTest {
+ class VoterServiceImplTest {
 	
 	@Autowired
 	VoterRepository voterRepo;
@@ -39,11 +39,11 @@ public class VoterServiceImplTest {
 	
 	@Test
 
-      void createVoter() throws NullValueFoundException{
+    void createVoter() throws NullValueFoundException{
 		
 		 
-		Voter sampleInput = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4","u76");
-		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98","u76");
+		Voter sampleInput = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4",56);
+		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",89);
 		
 		VoterService voterService = mock(VoterService.class);
         when(voterService.createVoter(sampleInput)).thenReturn(expectedOutput);
@@ -65,7 +65,7 @@ public class VoterServiceImplTest {
 		 voter.setPhoneNumber(56743865);
          voter.setUserName("mario");
          voter.setPassWord("js123");
-         voter.setCandId("u123");
+         voter.setId(65);
        Voter registeredVoter = voterService.registerVoter(voter);
 
 	 assertNotNull(registeredVoter);
@@ -75,7 +75,7 @@ public class VoterServiceImplTest {
      assertEquals(56743865, registeredVoter.getPhoneNumber());
  assertEquals("mario", registeredVoter.getUserName());
   assertEquals("js123", registeredVoter.getPassWord());
-	
+  assertEquals(56, registeredVoter.getId());
 	
 
 }
@@ -84,8 +84,8 @@ public class VoterServiceImplTest {
 	void UpdateVoter() throws Exception {
 // Create a team member with valid ID and updated name
 
-		Voter sampleInput = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4","u213");
-		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98","u213");
+		Voter sampleInput = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4",56);
+		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",65);
 
 		 
 
@@ -111,8 +111,8 @@ public class VoterServiceImplTest {
 	
 	void testGetAllVoters() throws Exception{
 		
-		 Voter voter1 = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4","u213");
-		Voter voter2 = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98","u213");
+		 Voter voter1 = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4",65);
+		Voter voter2 = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",65);
 		
 	     List<Voter> sampleOutput = new ArrayList<>();
 		sampleOutput.add(voter1);

@@ -1,10 +1,13 @@
 package com.voter.controller;
 
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +17,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.voter.entity.Voter;
 import com.voter.exception.NullUserFound;
 import com.voter.exception.NullUserNameFoundException;
 import com.voter.exception.NullValueFoundException;
+import com.voter.model.Candidate;
+import com.voter.model.RequiredResponse;
 import com.voter.service.VoterService;
 
 
@@ -29,8 +35,11 @@ public class VoterController {
 	
 	@Autowired
 	VoterService voterService;
-	private final Logger mylogs = LoggerFactory.getLogger(this.getClass());
 	
+	@Autowired
+	RestTemplate restTemplate;
+	
+	private final Logger logger = LoggerFactory.getLogger(VoterController.class);
 	
 	@GetMapping("/")
 	public String defaultMessage() {
@@ -54,7 +63,7 @@ public class VoterController {
 
 	public Voter updateVoter(@PathVariable int voterId, @RequestBody Voter voterDetails)
 
-	throws Exception {
+	throws NullUserFound, NullValueFoundException {
 
 	voterService.getByVoterId(voterId);
 
@@ -75,8 +84,10 @@ public class VoterController {
     e.printStackTrace();
 
     }
-    mylogs.info("Deleted = " + voterId + " Data");
-    return "Deleted Id = " + voterId + " Data";
+//    mylogs.info("Deleted = " + voterId + " Data");
+//    return "Deleted Id = " + voterId + " Data";
+    String deletedMessage = String.format("Deleted = %s Data", voterId);
+    return String.format("Deleted Id = %s Data", voterId);
 
     }
 	
@@ -114,7 +125,38 @@ public Voter registerVoter(@RequestBody Voter voter) throws NullUserFound, NullU
     logger.info("Voter registered successfully: {}", registeredVoter);
     return registeredVoter;
 }
+
+
+
+//http://localhost:8055/voter/id/1
+
+    @GetMapping("/id/{id}")
+
+    public ResponseEntity<RequiredResponse> getallDataBasedOnId(@PathVariable int id) throws NullUserFound {
+
+        logger.info("Fetching data for ID: {}", id);
+
+  RequiredResponse requiredResponse = new RequiredResponse();
+
+  Voter voter = voterService.getCandidateById(id).get(id);
+ requiredResponse.setVoter(voter);
+
+        List<Candidate> listofcandidate = restTemplate.getForObject("http://CANDIDATE/voter/id/"+id, List.class);
+
+        requiredResponse.setCandidate(listofcandidate);
+
+ 
+
+        logger.info("Fetched data for ID: {}", id);
+
+ 
+
+        return new ResponseEntity <RequiredResponse>(requiredResponse, HttpStatus.OK);
+
+    }
+
 }
+
 //@PostMapping("/registerVoter")
 //public Voter registerVoter(@RequestBody Voter voter) throws NullUserFound, NullUserNameFoundException {
 	//return voterService.registerVoter(voter);

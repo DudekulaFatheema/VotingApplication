@@ -19,28 +19,20 @@ import javax.persistence.Table;
 		
 		private int age;
 		
-		
-		
 		private long phoneNumber;
-
-		private String userName;
-		
-		
+        private String userName;
 		private String passWord;
-		
-		private String candId;
+			private int id;
 		
 		
 		public Voter() {
 			super();
-			// TODO Auto-generated constructor stub
+		
 		}
 
 
-		
-
-		public Voter(int voterId, String name, String gender, int age, long phoneNumber, String userName, String passWord,
-				String candId) {
+		public Voter(int voterId, String name, String gender, int age, long phoneNumber, String userName,
+				String passWord, int id) {
 			super();
 			this.voterId = voterId;
 			this.name = name;
@@ -49,10 +41,8 @@ import javax.persistence.Table;
 			this.phoneNumber = phoneNumber;
 			this.userName = userName;
 			this.passWord = passWord;
-			this.candId = candId;
+			this.id = id;
 		}
-
-
 
 
 		public int getVoterId() {
@@ -60,13 +50,9 @@ import javax.persistence.Table;
 		}
 
 
-
-
 		public void setVoterId(int voterId) {
 			this.voterId = voterId;
 		}
-
-
 
 
 		public String getName() {
@@ -74,13 +60,9 @@ import javax.persistence.Table;
 		}
 
 
-
-
 		public void setName(String name) {
 			this.name = name;
 		}
-
-
 
 
 		public String getGender() {
@@ -88,13 +70,9 @@ import javax.persistence.Table;
 		}
 
 
-
-
 		public void setGender(String gender) {
 			this.gender = gender;
 		}
-
-
 
 
 		public int getAge() {
@@ -102,13 +80,9 @@ import javax.persistence.Table;
 		}
 
 
-
-
 		public void setAge(int age) {
 			this.age = age;
 		}
-
-
 
 
 		public long getPhoneNumber() {
@@ -116,13 +90,9 @@ import javax.persistence.Table;
 		}
 
 
-
-
 		public void setPhoneNumber(long phoneNumber) {
 			this.phoneNumber = phoneNumber;
 		}
-
-
 
 
 		public String getUserName() {
@@ -130,13 +100,9 @@ import javax.persistence.Table;
 		}
 
 
-
-
 		public void setUserName(String userName) {
 			this.userName = userName;
 		}
-
-
 
 
 		public String getPassWord() {
@@ -144,38 +110,26 @@ import javax.persistence.Table;
 		}
 
 
-
-
 		public void setPassWord(String passWord) {
 			this.passWord = passWord;
 		}
 
 
-
-
-		public String getCandId() {
-			return candId;
+		public int getId() {
+			return id;
 		}
 
 
-
-
-		public void setCandId(String candId) {
-			this.candId = candId;
+		public void setId(int id) {
+			this.id = id;
 		}
-
-
 
 
 		@Override
 		public String toString() {
-			return "Voter [voterId=" + voterId + ", name=" + name + ", gender=" + gender + ", age=" + age + ", phoneNumber="
-					+ phoneNumber + ", userName=" + userName + ", passWord=" + passWord + ", candId=" + candId + "]";
+			return "Voter [voterId=" + voterId + ", name=" + name + ", gender=" + gender + ", age=" + age
+					+ ", phoneNumber=" + phoneNumber + ", userName=" + userName + ", passWord=" + passWord + ", id="
+					+ id + "]";
 		}
 
-	}
-
-
-		
-
-
+}	

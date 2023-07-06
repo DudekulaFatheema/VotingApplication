@@ -8,6 +8,7 @@ class VotingManagementApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
