@@ -59,6 +59,7 @@ import com.voter.repository.VoterRepository;
     void registerVoter() throws NullUserFound, NullUserNameFoundException {
 
          Voter voter = new Voter();
+	    voter.setVoterId(8);
           voter.setAge(18);
           voter.setName("haseena");
          voter.setGender("male");
@@ -68,6 +69,7 @@ import com.voter.repository.VoterRepository;
          voter.setId(56);
        Voter registeredVoter = voterService.registerVoter(voter);
     assertNotNull(registeredVoter);
+	  assertEquals(8, registeredVoter.getVoterId());  
      assertEquals(18, registeredVoter.getAge());
       assertEquals("haseena", registeredVoter.getName());
      assertEquals("male", registeredVoter.getGender());
