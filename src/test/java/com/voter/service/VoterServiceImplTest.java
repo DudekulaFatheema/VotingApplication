@@ -55,7 +55,31 @@ import com.voter.repository.VoterRepository;
         assertEquals(expectedOutput, actualOutput);
 	}
 	
-	
+	@Test
+    void registerVoter() throws NullUserFound, NullUserNameFoundException {
+
+         Voter voter = new Voter();
+          voter.setAge(18);
+          voter.setName("haseena");
+         voter.setGender("male");
+         voter.setPhoneNumber(56743865);
+         voter.setUserName("mario");
+         voter.setPassWord("js123");
+         voter.setId(56);
+       Voter registeredVoter = voterService.registerVoter(voter);
+    assertNotNull(registeredVoter);
+     assertEquals(18, registeredVoter.getAge());
+      assertEquals("haseena", registeredVoter.getName());
+     assertEquals("male", registeredVoter.getGender());
+     assertEquals(56743865, registeredVoter.getPhoneNumber());
+assertEquals("mario", registeredVoter.getUserName());
+  assertEquals("js123", registeredVoter.getPassWord());
+  assertEquals(56, registeredVoter.getId());
+
+
+ 
+
+}
 	@Test
 	void UpdateVoter() throws Exception {
 // Create a team member with valid ID and updated name
