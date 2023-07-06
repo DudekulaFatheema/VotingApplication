@@ -43,7 +43,7 @@ import com.voter.repository.VoterRepository;
 		
 		 
 		Voter sampleInput = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4",56);
-		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",89);
+		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",56);
 		
 		VoterService voterService = mock(VoterService.class);
         when(voterService.createVoter(sampleInput)).thenReturn(expectedOutput);
@@ -65,17 +65,16 @@ import com.voter.repository.VoterRepository;
 		 voter.setPhoneNumber(56743865);
          voter.setUserName("mario");
          voter.setPassWord("js123");
-         voter.setId(65);
+         voter.setId(56);
        Voter registeredVoter = voterService.registerVoter(voter);
-
-	 assertNotNull(registeredVoter);
-	 assertEquals(18, registeredVoter.getAge());
+	assertNotNull(registeredVoter);
+     assertEquals(18, registeredVoter.getAge());
       assertEquals("haseena", registeredVoter.getName());
      assertEquals("male", registeredVoter.getGender());
      assertEquals(56743865, registeredVoter.getPhoneNumber());
  assertEquals("mario", registeredVoter.getUserName());
   assertEquals("js123", registeredVoter.getPassWord());
-  assertEquals(65, registeredVoter.getId());
+  assertEquals(56, registeredVoter.getId());
 	
 
 }
@@ -85,7 +84,7 @@ import com.voter.repository.VoterRepository;
 // Create a team member with valid ID and updated name
 
 		Voter sampleInput = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4",56);
-		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",65);
+		Voter expectedOutput = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",56);
 
 		 
 
@@ -111,8 +110,8 @@ import com.voter.repository.VoterRepository;
 	
 	void testGetAllVoters() throws Exception{
 		
-		 Voter voter1 = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4",65);
-		Voter voter2 = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",65);
+		 Voter voter1 = new Voter(8,"haseena","male", 15, 90876435, "haseena","haseen4",56);
+		Voter voter2 = new Voter(8,"haseena","male", 18, 90879365, "haseen","has98",56);
 		
 	     List<Voter> sampleOutput = new ArrayList<>();
 		sampleOutput.add(voter1);
