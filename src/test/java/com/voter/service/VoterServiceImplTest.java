@@ -67,7 +67,7 @@ import com.voter.repository.VoterRepository;
          voter.setPassWord("js123");
          voter.setId(56);
        Voter registeredVoter = voterService.registerVoter(voter);
-	//assertNotNull(registeredVoter);
+	assertNotNull(registeredVoter);
      assertEquals(18, registeredVoter.getAge());
       assertEquals("haseena", registeredVoter.getName());
      assertEquals("male", registeredVoter.getGender());
